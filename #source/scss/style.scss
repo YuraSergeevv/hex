@@ -1,0 +1,221 @@
+// <ПОДКЛЮЧЕНИЕ MIXIN>------------------------------------------------------
+@import "mixin.scss";
+// <ПОДКЛЮЧЕНИЕ MIXIN>------------------------------------------------------
+
+// <ШРИФТЫ>-----------------------------------------------------------------
+
+// <подключаем шрифты>------------------------------------------------------
+@import "fonts.scss";
+// </подключаем шрифты>-----------------------------------------------------
+
+// <шрифт по умолчанию>-----------------------------------------------------
+$font-family: "";
+// </шрифт по умолчанию>----------------------------------------------------
+
+// </ШРИФТЫ>----------------------------------------------------------------
+
+// <ПЕРЕМЕННЫЕ>-------------------------------------------------------------
+$max-width: 1200;
+$min-width: 360;
+$body-font-size: 14;
+$padd-container: 20;
+// </ПЕРЕМЕННЫЕ>------------------------------------------------------------
+
+// <ОБНУЛЕНИЕ, ОБЩИЕ ПАРАМЕТРЫ>---------------------------------------------
+@import "resize-style.scss";
+// </ОБНУЛЕНИЕ, ОБЩИЕ ПАРАМЕТРЫ>---------------------------------------------
+
+// <BODY>--------------------------------------------------------------------
+body {
+  line-height: 1.25;
+  font-size: $body-font-size+px;
+  font-family: $font-family;
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+// </BODY>--------------------------------------------------------------------
+
+// <ОБОЛОЧКА>----------------------------------------------------------------
+.wrapper {
+  width: 100%;
+  min-height: 100%;
+}
+
+// </ОБОЛОЧКА>---------------------------------------------------------------
+
+// <КОНТЕЙНЕР>---------------------------------------------------------------
+.container {
+  max-width: $max-width+px;
+  margin: 0 auto;
+  padding: 0 $padd-container+px;
+}
+
+// </КОНТЕЙНЕР>--------------------------------------------------------------
+
+// <ПОДКЛЮЧЕНИЕ ФАЙЛОВ СТИЛЕЙ СТРАНИЦ И ЭЛЕМЕНТОВ>---------------------------
+@import "class.scss";
+// </ПОДКЛЮЧЕНИЕ ФАЙЛОВ СТИЛЕЙ СТРАНИЦ И ЭЛЕМЕНТОВ>--------------------------
+
+// <ШАПКА>-------------------------------------------------------------------
+@import 'header.scss';
+// </ШАПКА>------------------------------------------------------------------
+
+// <ОСНОВНОЙ БЛОК>-----------------------------------------------------------
+
+input,
+textarea {
+  &.error {
+    border-color: red;
+  }
+}
+
+// </ОСНОВНОЙ БЛОК>----------------------------------------------------------
+
+// <404>---------------------------------------------------------------------
+//===========================================================================
+// </404>--------------------------------------------------------------------
+
+// <ПОДВАЛ>------------------------------------------------------------------
+@import "footer.scss";
+// </ПОДВАЛ>-----------------------------------------------------------------
+
+// <ПОПАП>-------------------------------------------------------------------
+@import "popup.scss";
+// </ПОПАП>------------------------------------------------------------------
+
+// <ПРОКРУТКА ВВЕРХ>---------------------------------------------------------
+.scroll-up {
+  position: fixed;
+  right: 50px;
+  bottom: 50px;
+  z-index: 100;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 3px #dcdcdc;
+  @include anim(0.4s, 0s);
+  transform: translateY(25px);
+  opacity: 0;
+  visibility: hidden;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    border: 3px solid red;
+    width: 10px;
+    height: 10px;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    transition: inherit;
+    opacity: 0.6;
+  }
+
+  &__path {
+    box-sizing: border-box;
+    fill: none;
+    stroke: red;
+    stroke-width: 3px;
+    @include anim(0.4s, 0s);
+  }
+
+  &.scroll-up_active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  &:hover {
+    &:before {
+      border-color: red;
+      opacity: 1;
+    }
+  }
+}
+
+// </ПРОКРУТКА ВВЕРХ>--------------------------------------------------------
+
+// <ПОДКЛЮЧЕНИЕ МЕДИАЗАПРОСОВ>-----------------------------------------------
+@import "media.scss";
+// </ПОДКЛЮЧЕНИЕ МЕДИАЗАПРОСОВ>----------------------------------------------
+
+body {
+
+}
+
+.wrapper {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+  background-color: #ffffff;
+}
+
+.item_inner {
+  position: relative;
+  top: -25px;
+  left: -25px;
+  width: calc(100vw + 155px);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.item_row {
+  display: flex;
+  position: relative;
+
+  &:nth-child(2n) {
+    left: -50px;
+  }
+}
+
+.item {
+  margin: 14px 1px;
+  width: 100px;
+  height: 55px;
+  background: #444444;
+  position: relative;
+  transition: background-color 0.6s;
+  border-color: #444444;
+
+&:hover {
+  background-color: chartreuse;
+  border-color: chartreuse;
+  &:after, {
+    border-top-color: inherit;
+  }
+
+  &:before {
+    border-bottom-color: inherit;
+  }
+}
+
+&:before,
+&:after {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: 0;
+  border-left: 48px solid transparent;
+  border-right: 48px solid transparent;
+}
+
+&:before {
+  transition: border-bottom-color 0.6s;
+  bottom: 100%;
+  border-bottom: 25px solid ;
+  border-bottom-color: inherit;
+}
+
+&:after {
+  transition: border-top-color 0.6s;
+  top: 100%;
+  border-top: 25px solid;
+  border-top-color: inherit;
+} }
